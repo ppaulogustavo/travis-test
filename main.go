@@ -1,9 +1,7 @@
 package main
 
-import "fmt"
-
 func main() {
-	fmt.Println(getRegards())
+	getRegards()
 }
 
 func getRegards() string {
