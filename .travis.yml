@@ -16,3 +16,16 @@ after_success:
 branches:
   only:
   - master
+
+before_deploy:
+- export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+- git tag $TRAVIS_TAG
+
+deploy:
+  file: ${TRAVIS_HOME}/gopath/bin/travis-test
+  provider: releases
+  api_key:
+    secure: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  on:
+    repo: ppaulogustavo/travis-test
+    branch: master
